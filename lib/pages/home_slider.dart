@@ -39,66 +39,67 @@ class _HomeSliderState extends State<HomeSlider>{
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView.builder(
-          scrollDirection: Axis.vertical,
-          itemCount: images.length,
-          itemBuilder: (_, index){
-            //show image in background
-            return Container(
-              width: double.maxFinite,
-              height: double.maxFinite,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(
-                      images[index],
-                    ),
-                    fit: BoxFit.cover,
+        scrollDirection: Axis.vertical,
+        itemCount: images.length,
+        itemBuilder: (_, index){
+          //show image in background
+          return Container(
+            width: double.maxFinite,
+            height: double.maxFinite,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                    images[index],
+                  ),
+                  fit: BoxFit.cover,
+                )
+            ),
+            // show text (title, heading and text)
+            child: Container(
+              margin: const EdgeInsets.only(top: 150, left: 20, right: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BigText(text: title[index], size: 30),
+                      const SizedBox(height: 2),
+                      Container(
+                        width: 250,
+                        child: HomeText(text: heading1[index], size: 20),
+                      ),
+                      const SizedBox(height: 20),
+                      Container(
+                        width: 250,
+                        child: HomeText(
+                          text: text[index],
+                          color: Colors.black38,
+                        ),
+                      ),
+                    ],
+                  ),
+                  // show List (dots on the right)
+                  Column(
+                    children:
+                    List.generate(3, (indexDots) {
+                      return Container(
+                        margin: const EdgeInsets.only(bottom: 4),
+                        width: 8,
+                        height: index == indexDots?25:8,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: const Color.fromRGBO(162, 183, 155, 1),
+                        ),
+                      );
+                    }),
                   )
+                ],
               ),
-              // show text (title, heading and text)
-              child: Container(
-                margin: const EdgeInsets.only(top: 150, left: 20, right: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        BigText(text: title[index], size: 30),
-                        const SizedBox(height: 2),
-                        Container(
-                          width: 250,
-                          child: HomeText(text: heading1[index], size: 20),
-                        ),
-                        const SizedBox(height: 20),
-                        Container(
-                          width: 250,
-                          child: HomeText(
-                            text: text[index],
-                            color: Colors.black38,
-                          ),
-                        ),
-                      ],
-                    ),
-                    // show List (dots on the right)
-                    Column(
-                      children:
-                      List.generate(3, (indexDots) {
-                        return Container(
-                          margin: const EdgeInsets.only(bottom: 4),
-                          width: 8,
-                          height: index == indexDots?25:8,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: const Color.fromRGBO(162, 183, 155, 1),
-                          ),
-                        );
-                      }),
-                    )
-                  ],
-                ),
-              ),
-            );
-          }),
+            ),
+          );
+        }
+      ),
     );
   }
 }

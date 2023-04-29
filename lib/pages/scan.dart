@@ -97,6 +97,7 @@ class _ScanState extends State<Scan> {
   }
 
   // functions and variables scan
+  // list of food from checkboxes
   List selectedFood = [];
   List fittingRecipes = [];
   List food = [
@@ -131,9 +132,10 @@ class _ScanState extends State<Scan> {
     ['Sonnenblumenöl', false],
     ['Balsamico', false],
   ];
+  // list of food from checkboxes and camera
   List collectedList = [];
 
-  // Funktionen und Varibalen Seitenwechsel
+  // functions and variables toggle pages
   int choosingItems = 1;
   int cameraPage = 0;
   int assignedFood = 0;
@@ -407,7 +409,7 @@ class _ScanState extends State<Scan> {
                   }
                   if (snapshot.hasData && foodlist.isEmpty) {
                     for (int i =0; i < snapshot.data!.result.length; i++) {
-                      var item = snapshot.data!.result[i].item;
+                      var item = snapshot.data!.result[i];
                       if (!foodlist.contains(item)) {
                         foodlist.add(item);
                       }
@@ -603,7 +605,7 @@ Future<void> pickAndUploadImage(BuildContext context) async {
 // functions assignedFood
 Future<APIResponse> fetchAlbum() async {
   final response = await http
-      .get(Uri.parse('https://objectdetection-hy5jt23ota-uc.a.run.app'),
+      .get(Uri.parse('https://eatup-hy5jt23ota-uc.a.run.app'),
       headers: {
         HttpHeaders.accessControlAllowOriginHeader: "*",
       });

@@ -48,7 +48,7 @@ class RecipePage extends StatelessWidget {
                   ),
                 ),
               )),
-          // icon to go back on the top widgets
+          // icons on the top
           Positioned(
             top: 45,
             left: 20,
@@ -56,12 +56,14 @@ class RecipePage extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                // button to go back
                 InkWell(
                   child: const AppIcon(icon: Icons.arrow_back_ios),
                   onTap: () {
                     Navigator.pop(context);
                   },
                 ),
+                // like button
                 LikeButton(title: title),
               ],
             ),
@@ -72,7 +74,6 @@ class RecipePage extends StatelessWidget {
             right: 0,
             bottom: 0,
             top: 350 - 20,
-            //Dimensions.recipepageImgSize
             child: SingleChildScrollView(
               child: Container(
                 padding: const EdgeInsets.only(left: 20, right: 20, top: 20),

@@ -1,15 +1,10 @@
-import 'package:eatup/models/detected_object.dart';
-
 class APIResponse {
-  final List<DetectedObject> result;
+  final List<dynamic> result; // Declaration of the list of results.
 
-  APIResponse({required this.result});
+  APIResponse({required this.result}); // Constructor that expects the list.
 
-  factory APIResponse.fromJson(Map<String, dynamic> json) {
-    var resultList = json['result'] as List;
-    List<DetectedObject> results = resultList
-        .map((resultJson) => DetectedObject.fromJson(resultJson))
-        .toList();
-    return APIResponse(result: results);
+  factory APIResponse.fromJson(Map<String, dynamic> json) { // Constructor that expects a JSON object.
+    var resultList = json['result'] as List; // Extracting the results from the JSON object.
+    return APIResponse(result: resultList); // Returning a new APIResponse instance with the extracted results.
   }
 }
